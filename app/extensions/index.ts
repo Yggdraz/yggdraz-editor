@@ -38,8 +38,8 @@ import { HorizontalRule, type HorizontalRuleOptions } from './HorizontalRule'
 import Iframe, { type IframeOptions } from './Iframe/Iframe'
 import { Image, type ImageOptions } from './Image'
 import { ImageUpload } from './ImageUpload'
-import { Import, type ImportOptions } from './Import'
-import { ImportWord, type ImportWordOptions } from './ImportWord'
+/* import { Import, type ImportOptions } from './Import'
+import { ImportWord, type ImportWordOptions } from './ImportWord' */
 import { Indent, type IndentOptions } from './Indent'
 import { Italic, type ItalicOptions } from './Italic'
 import { LineHeight, type LineHeightOptions } from './LineHeight'
@@ -311,15 +311,15 @@ export interface BaseKitOptions {
    *
    * @default true
    */
-  import: Partial<ImportOptions> | false
+  /* import: Partial<ImportOptions> | false */
 
   /**
    * ImportWord options or false, indicating whether to enable word imports
    *
    * @default true
    */
-  importWord: Partial<ImportWordOptions> | false
-
+  /*  importWord: Partial<ImportWordOptions> | false
+  */
   /**
    * Indent options or false, indicating whether to enable indentation
    *
@@ -878,26 +878,26 @@ export const BaseKit = Extension.create<BaseKitOptions>({
       }))
     }
 
-    if (this.options.import !== false) {
-      extensions.push(Import.configure({
-        appId: useRuntimeConfig().public.CONVERT_APP_ID,
-        token: useRuntimeConfig().public.JWT_CONVERT_TOKEN,
-        ...this.options.import
-      }))
-    }
-
-    if (this.options.importWord !== false) {
-      extensions.push(ImportWord.configure({
-        upload: (files: File[]) => {
-          const f = files.map(file => ({
-            src: URL.createObjectURL(file),
-            alt: file.name,
-          }))
-          return Promise.resolve(f)
-        },
-        ...this.options.importWord
-      }))
-    }
+    /*    if (this.options.import !== false) {
+         extensions.push(Import.configure({
+           appId: useRuntimeConfig().public.CONVERT_APP_ID,
+           token: useRuntimeConfig().public.JWT_CONVERT_TOKEN,
+           ...this.options.import
+         }))
+       }
+   
+       if (this.options.importWord !== false) {
+         extensions.push(ImportWord.configure({
+           upload: (files: File[]) => {
+             const f = files.map(file => ({
+               src: URL.createObjectURL(file),
+               alt: file.name,
+             }))
+             return Promise.resolve(f)
+           },
+           ...this.options.importWord
+         }))
+       } */
 
     if (this.options.indent !== false) {
       extensions.push(Indent.configure(this.options.indent))

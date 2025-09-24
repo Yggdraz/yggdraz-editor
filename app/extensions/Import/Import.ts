@@ -1,8 +1,8 @@
-import { Import as TiptapImport, type ImportOptions as TiptapImportOptions } from '@tiptap-pro/extension-import'
-import ActionButton from './components/ActionButton.vue'
+/* import { Import as TiptapImport, type ImportOptions as TiptapImportOptions } from '@tiptap-pro/extension-import'
+ */import ActionButton from './components/ActionButton.vue'
 import type { GeneralOptions } from '../../types'
-
-export interface ImportOptions extends TiptapImportOptions, GeneralOptions<ImportOptions> {}
+/* 
+export interface ImportOptions extends TiptapImportOptions, GeneralOptions<ImportOptions> { }
 
 export const Import = TiptapImport.extend<ImportOptions>({
   addOptions() {
@@ -19,3 +19,4 @@ export const Import = TiptapImport.extend<ImportOptions>({
     }
   }
 })
+ */
