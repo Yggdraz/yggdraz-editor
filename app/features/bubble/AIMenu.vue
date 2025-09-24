@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { BubbleMenu, type Editor } from '@tiptap/vue-3'
+import { BubbleMenu } from '@tiptap/vue-3/menus'
+import type { Editor } from '@tiptap/vue-3'
 import { useDebounceFn, useFocus } from '@vueuse/core'
 import AiCompletion from './AiCompletion.vue'
 import Menu from './Menu.vue'
@@ -137,48 +138,25 @@ const shortcutMenus = computed(() => {
 
 <template>
   <div v-show="shouldShow" class="absolute left-0 right-0 top-0 bottom-0 z-[98]" @click="handleOverlayClick">
-    <BubbleMenu
-      v-show="shouldShow" :editor="editor" :tippy-options="tippyOptions" :update-delay="0" plugin-key="AIMenu"
-    >
+    <BubbleMenu v-show="shouldShow" :editor="editor" :tippy-options="tippyOptions" :update-delay="0"
+      plugin-key="AIMenu">
       <div :class="{ 'shake-animation': isShaking }" class="relative w-[450px] z-[99]">
-        <div
-          v-show="(status === 'generating' || status === 'completed') && result"
-          class="shadow-md rounded-md border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-700"
-        >
+        <div v-show="(status === 'generating' || status === 'completed') && result"
+          class="shadow-md rounded-md border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-700">
           <div ref="resultContainer" class="p-4 line-height-none block overflow-y-auto" style="max-height: 270px;">
             <div class="text-sm text-foreground line-height-snug" v-html="result" />
           </div>
         </div>
         <form
           class="relative w-full items-center flex mt-3 shadow-md rounded-md border border-neutral-200 bg-white dark:bg-neutral-800 dark:border-neutral-700"
-          @submit="handleGenerate"
-        >
-          <UInput
-            ref="inputRef"
-            v-model="prompt"
-            :loading="status === 'generating'"
-            class="w-full"
-            icon="i-lucide-sparkles"
-            placeholder="Demandez à l'IA..."
-            size="md"
-            variant="none"
-          >
+          @submit="handleGenerate">
+          <UInput ref="inputRef" v-model="prompt" :loading="status === 'generating'" class="w-full"
+            icon="i-lucide-sparkles" placeholder="Demandez à l'IA..." size="md" variant="none">
             <template #trailing>
-              <UButton
-                v-if="status === 'generating'"
-                size="xs"
-                square
-                @click="handleClose"
-              >
+              <UButton v-if="status === 'generating'" size="xs" square @click="handleClose">
                 Stop
               </UButton>
-              <UButton
-                v-else
-                :disabled="!prompt"
-                size="xs"
-                square
-                @click="handleGenerate"
-              >
+              <UButton v-else :disabled="!prompt" size="xs" square @click="handleGenerate">
                 <Suspense>
                   <UIcon name="i-lucide-chevron-right" />
                 </Suspense>
@@ -189,13 +167,8 @@ const shortcutMenus = computed(() => {
         <div v-show="status === 'init' && shortcutMenus.length && !prompt" class="mt-3 max-w-56">
           <Menu :items="shortcutMenus" @item-click="shortcutClick" />
         </div>
-        <AiCompletion
-          v-if="status === 'completed' && prompt === ''"
-          :completion="result"
-          :editor="editor"
-          @close="handleClose"
-          @generate="handleReGenerate"
-        />
+        <AiCompletion v-if="status === 'completed' && prompt === ''" :completion="result" :editor="editor"
+          @close="handleClose" @generate="handleReGenerate" />
       </div>
     </BubbleMenu>
   </div>
@@ -206,9 +179,11 @@ const shortcutMenus = computed(() => {
   0% {
     content: '·';
   }
+
   33% {
     content: '··';
   }
+
   66% {
     content: '···';
   }
@@ -228,22 +203,23 @@ const shortcutMenus = computed(() => {
 }
 
 @keyframes shake {
+
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
+
   20%,
   80% {
     transform: translate3d(2px, 0, 0);
   }
-  
+
   30%,
   50%,
   70% {
     transform: translate3d(-4px, 0, 0);
   }
-  
+
   40%,
   60% {
     transform: translate3d(4px, 0, 0);

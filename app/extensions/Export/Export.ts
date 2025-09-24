@@ -1,9 +1,9 @@
-import { Export as TiptapExport, type ExportOptions as TiptapExportOptions } from '@tiptap-pro/extension-export'
-import ActionButton from './components/ActionButton.vue'
+/* import { Export as TiptapExport, type ExportOptions as TiptapExportOptions } from '@tiptap-pro/extension-export'
+ */import ActionButton from './components/ActionButton.vue'
 import type { GeneralOptions } from '../../types'
-
-export interface ExportOptions extends TiptapExportOptions, GeneralOptions<ExportOptions> {}
-
+/*
+export interface ExportOptions extends TiptapExportOptions, GeneralOptions<ExportOptions> { }
+ 
 export const Export = TiptapExport.extend<ExportOptions>({
   addOptions() {
     const onExport = (context: any) => {
@@ -61,3 +61,4 @@ export const Export = TiptapExport.extend<ExportOptions>({
     }
   }
 })
+ */

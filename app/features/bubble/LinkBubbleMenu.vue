@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { BubbleMenu, type Editor } from '@tiptap/vue-3'
-import LinkEditBlock from '../../extensions/Link/components/LinkEditBlock'
-import LinkViewBlock from '../../extensions/Link/components/LinkViewBlock'
+import { BubbleMenu } from '@tiptap/vue-3/menus'
+import type { Editor } from '@tiptap/vue-3'
+
+import LinkEditBlock from '../../extensions/Link/components/LinkEditBlock.vue'
+import LinkViewBlock from '../../extensions/Link/components/LinkViewBlock.vue'
 
 interface Props {
   editor: Editor
@@ -52,21 +54,17 @@ function unSetLink() {
 </script>
 
 <template>
-  <BubbleMenu
-    v-show="shouldShow"
-    :editor="editor"
-    :tippy-options="{
-      popperOptions: {
-        modifiers: [{ name: 'flip', enabled: false }],
-      },
-      placement: 'bottom-start',
-      offset: [-2, 16],
-      zIndex: 9999,
-      onHidden: () => {
-        showEdit = false
-      },
-    }"
-  >
+  <BubbleMenu v-show="shouldShow" :editor="editor" :tippy-options="{
+    popperOptions: {
+      modifiers: [{ name: 'flip', enabled: false }],
+    },
+    placement: 'bottom-start',
+    offset: [-2, 16],
+    zIndex: 9999,
+    onHidden: () => {
+      showEdit = false
+    },
+  }">
     <LinkEditBlock v-if="showEdit" :editor="editor" @onSetLink="onSetLink" />
     <LinkViewBlock v-else :editor="editor" :link="link" @clear="unSetLink" @edit="showEdit = true" />
   </BubbleMenu>

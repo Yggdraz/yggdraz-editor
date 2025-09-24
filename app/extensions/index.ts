@@ -24,7 +24,7 @@ import { Document } from './Document'
 import { Dropcursor, type DropcursorOptions } from '@tiptap/extension-dropcursor'
 import Emoji, { type EmojiOptions, gitHubEmojis } from '@tiptap/extension-emoji'
 import EmojiSuggestion from './Emoji'
-import { Export, type ExportOptions } from './Export'
+/* import { Export, type ExportOptions } from './Export' */
 import Focus, { type FocusOptions } from '@tiptap/extension-focus'
 import { FormatPainter, type FormatPainterOptions } from './FormatPainter'
 import { FontSize, type FontSizeOptions } from './FontSize'
@@ -213,7 +213,7 @@ export interface BaseKitOptions {
    *
    * @default true
    */
-  export: Partial<ExportOptions> | false
+  /* export: Partial<ExportOptions> | false */
 
   /**
    * Focus options or false, indicating whether to enable focus functionality
