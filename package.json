@@ -1,5 +1,5 @@
 {
-  "name": "@leazyhub/editor",
+  "name": "@yggdraz/editor",
   "type": "module",
   "version": "0.1.22",
   "main": "./nuxt.config.ts",
