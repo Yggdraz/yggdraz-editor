@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { BubbleMenu, type Editor } from '@tiptap/vue-3'
+import { BubbleMenu } from '@tiptap/vue-3/menus'
+import type { Editor } from '@tiptap/vue-3'
+
 import { Editor as CoreEditor } from '@tiptap/core'
 import { EditorState, type NodeSelection } from '@tiptap/pm/state'
 import { EditorView } from '@tiptap/pm/view'
@@ -23,11 +25,11 @@ export interface ShouldShowProps {
 
 export interface Emits {
   (event: 'onDeleteTable'): void
-  
+
   (event: 'onMergeCell'): void
-  
+
   (event: 'onSplitCell'): void
-  
+
   (event: 'setCellBackground', value: string): void
 }
 
@@ -59,59 +61,31 @@ const selection = computed(() => {
 </script>
 
 <template>
-  <BubbleMenu
-    :editor="editor"
-    :should-show="shouldShow"
-    :tippy-options="{
-      appendTo: 'parent',
-      offset: [0, 15],
-      popperOptions: {
-        modifiers: [{ name: 'flip', enabled: false }],
-      },
-    }"
-    :updateDelay="0"
-    pluginKey="tableCellMenu"
-  >
+  <BubbleMenu :editor="editor" :should-show="shouldShow" :tippy-options="{
+    appendTo: 'parent',
+    offset: [0, 15],
+    popperOptions: {
+      modifiers: [{ name: 'flip', enabled: false }],
+    },
+  }" :updateDelay="0" pluginKey="tableCellMenu">
     <div
-      class="flex flex-row h-full leading-none gap-0.5 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border border-border border-default"
-    >
-      <ActionButton
-        v-if="selection?.cellCount! > 1"
-        :action="() => emits('onMergeCell')"
+      class="flex flex-row h-full leading-none gap-0.5 bg-white dark:bg-neutral-800 rounded-lg shadow-sm border border-border border-default">
+      <ActionButton v-if="selection?.cellCount! > 1" :action="() => emits('onMergeCell')" :tooltip-options="{
+        sideOffset: 15,
+      }" icon="i-lucide-table-cells-merge" :tooltip="$t('editor.table.menu.merge_cells')" />
+
+      <ActionButton v-if="selection?.mergedCellCount! > 0" :action="() => emits('onSplitCell')" :tooltip-options="{
+        sideOffset: 15,
+      }" icon="i-lucide-table-cells-split" :tooltip="$t('editor.table.menu.split_cells')" />
+      <ActionButton v-if="isTableSelected(props.editor.state.selection)" :action="() => emits('onDeleteTable')"
         :tooltip-options="{
           sideOffset: 15,
-        }"
-        icon="i-lucide-table-cells-merge"
-        :tooltip="$t('editor.table.menu.merge_cells')"
-      />
-      
-      <ActionButton
-        v-if="selection?.mergedCellCount! > 0"
-        :action="() => emits('onSplitCell')"
+        }" icon="i-lucide-trash-2" :tooltip="$t('editor.table.menu.delete_table')" />
+
+      <HighlightActionButton :action="color => emits('setCellBackground', color as string)" :editor="editor"
         :tooltip-options="{
           sideOffset: 15,
-        }"
-        icon="i-lucide-table-cells-split"
-        :tooltip="$t('editor.table.menu.split_cells')"
-      />
-      <ActionButton
-        v-if="isTableSelected(props.editor.state.selection)"
-        :action="() => emits('onDeleteTable')"
-        :tooltip-options="{
-          sideOffset: 15,
-        }"
-        icon="i-lucide-trash-2"
-        :tooltip="$t('editor.table.menu.delete_table')"
-      />
-      
-      <HighlightActionButton
-        :action="color => emits('setCellBackground', color as string)"
-        :editor="editor"
-        :tooltip-options="{
-          sideOffset: 15,
-        }"
-        :tooltip="$t('editor.table.menu.cell_background_color')"
-      />
+        }" :tooltip="$t('editor.table.menu.cell_background_color')" />
     </div>
   </BubbleMenu>
 </template>
