@@ -23,7 +23,7 @@
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui": "^3.3.5",
     "@nuxtjs/color-mode": "^3.5.2",
-    "@nuxtjs/i18n": "^9.5.6",
+    "@nuxtjs/i18n": "^10.1.0",
     "@tiptap/core": "^3.5.2",
     "@tiptap/extension-blockquote": "^3.5.2",
     "@tiptap/extension-bold": "^3.5.2",
@@ -98,6 +98,7 @@
     "@nuxt/eslint": "0.7.1",
     "eslint": "^9.36.0",
     "openai": "^5.23.0",
+    "patch-package": "^8.0.0",
     "vue-tsc": "^2.2.12"
   }
 }

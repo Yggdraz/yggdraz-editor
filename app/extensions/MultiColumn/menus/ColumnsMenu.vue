@@ -54,13 +54,16 @@ const onColumnTwo = () => {
       <div class="flex gap-1 items-center">
         <ActionButton :action="onColumnLeft"
           :is-active="() => editor.isActive('columns', { layout: ColumnLayout.SidebarLeft })"
-          :tooltip-options="{ sideOffset: 15 }" icon="i-lucide-panel-left" tooltip="30/70" />
+          :tooltip-options="{ sideOffset: 15 }" icon="i-lucide-panel-left"
+          :tooltip="$t('editor.columns.layout.30/70')" />
         <ActionButton :action="onColumnTwo"
           :is-active="() => editor.isActive('columns', { layout: ColumnLayout.TwoColumn })"
-          :tooltip-options="{ sideOffset: 15 }" icon="i-lucide-columns-2" tooltip="50/50" />
+          :tooltip-options="{ sideOffset: 15 }" icon="i-lucide-columns-2"
+          :tooltip="$t('editor.columns.layout.50/50')" />
         <ActionButton :action="onColumnRight"
           :is-active="() => editor.isActive('columns', { layout: ColumnLayout.SidebarRight })"
-          :tooltip-options="{ sideOffset: 15 }" icon="i-lucide-panel-right" tooltip="70/30" />
+          :tooltip-options="{ sideOffset: 15 }" icon="i-lucide-panel-right"
+          :tooltip="$t('editor.columns.layout.70/30')" />
       </div>
     </div>
   </BubbleMenu>

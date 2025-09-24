@@ -184,7 +184,12 @@
     },
     "columns": {
       "tooltip": "Colonnes",
-      "description": "Ajouter des colonnes"
+      "description": "Ajouter des colonnes",
+      "layout": {
+        "30/70": "30/70",
+        "50/50": "50/50",
+        "70/30": "70/30"
+      }
     },
     "link": {
       "tooltip": "Lien",

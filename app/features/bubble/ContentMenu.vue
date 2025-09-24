@@ -2,6 +2,7 @@
 import type { Node } from '@tiptap/pm/model'
 import { Editor } from '@tiptap/vue-3'
 import type { NodeSelection, Plugin } from '@tiptap/pm/state'
+import { PluginKey } from '@tiptap/pm/state'
 import { DragHandlePlugin, dragHandlePluginDefaultKey } from '../../utils/drag'
 import { MoveNode } from '../../utils/pm-utils'
 
@@ -20,7 +21,7 @@ const props = defineProps({
   },
   pluginKey: {
     type: String,
-    default: dragHandlePluginDefaultKey,
+    default: 'dragHandle',
   },
   onNodeChange: Function,
   tippyOptions: {
@@ -60,7 +61,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (pluginRef.value) {
-    props.editor.unregisterPlugin(props.pluginKey)
+    props.editor.unregisterPlugin(new PluginKey(props.pluginKey))
   }
 })
 

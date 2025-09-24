@@ -29,6 +29,8 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
       button({ editor, extension, t }) {
         const subscript = extension.options.subscript
         const superscript = extension.options.superscript
+        const hasSubAndSuperScript = hasExtension(editor, 'subAndSuperScript')
+
         const subBtn: Item = {
           action: () => editor.commands.toggleSubscript(),
           isActive: () => editor.isActive('subscript') || false,
@@ -50,8 +52,9 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
 
         const items: Item[] = []
 
-        if (subscript !== false) items.push(subBtn)
-        if (superscript !== false) items.push(superBtn)
+        // Only add subscript/superscript buttons if SubAndSuperScript is not present
+        if (subscript !== false && !hasSubAndSuperScript) items.push(subBtn)
+        if (superscript !== false && !hasSubAndSuperScript) items.push(superBtn)
         if (hasCode) {
           const codeBtn: Item = {
             action: () => editor.commands.toggleCode(),
@@ -80,11 +83,14 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
   addExtensions() {
     const extensions: Extensions = []
 
-    if (this.options.subscript !== false) {
+    // Check if SubAndSuperScript extension is already present to avoid duplicates
+    const hasSubAndSuperScript = this.editor?.extensionManager.extensions.some(ext => ext.name === 'subAndSuperScript')
+
+    if (this.options.subscript !== false && !hasSubAndSuperScript) {
       extensions.push(TiptapSubscript.configure(this.options.subscript))
     }
 
-    if (this.options.superscript !== false) {
+    if (this.options.superscript !== false && !hasSubAndSuperScript) {
       extensions.push(TiptapSuperscript.configure(this.options.superscript))
     }
 
