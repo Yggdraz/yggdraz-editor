@@ -24,7 +24,7 @@
     "@nuxt/ui": "^3.3.5",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^9.5.6",
-    "@tiptap/core": "^2.26.2",
+    "@tiptap/core": "^3.5.2",
     "@tiptap/extension-blockquote": "^3.5.2",
     "@tiptap/extension-bold": "^3.5.2",
     "@tiptap/extension-bubble-menu": "^3.5.2",
