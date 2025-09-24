@@ -1,6 +1,6 @@
 import type { CharacterCountOptions } from '@tiptap/extension-character-count'
 import type { DropcursorOptions } from '@tiptap/extension-dropcursor'
-import type { EmojiOptions } from '@tiptap-pro/extension-emoji'
+import type { EmojiOptions } from '@tiptap/extension-emoji'
 import type { ExportOptions } from '../extensions/Export'
 import type { FocusOptions } from '@tiptap/extension-focus'
 import type { HardBreakOptions } from '@tiptap/extension-hard-break'

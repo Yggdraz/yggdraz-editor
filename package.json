@@ -22,10 +22,10 @@
     "@nuxt/ui": "^3.3.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^9.5.4",
-    "@tiptap-pro/extension-details": "^2.18.0",
-    "@tiptap-pro/extension-details-content": "^2.18.0",
-    "@tiptap-pro/extension-details-summary": "^2.18.0",
-    "@tiptap-pro/extension-emoji": "^2.18.0",
+    "@tiptap/extension-details": "^2.18.0",
+    "@tiptap/extension-details-content": "^2.18.0",
+    "@tiptap/extension-details-summary": "^2.18.0",
+    "@tiptap/extension-emoji": "^2.18.0",
     "@tiptap-pro/extension-export": "^2.18.0",
     "@tiptap-pro/extension-import": "^2.18.0",
     "@tiptap/core": "^2.11.9",
@@ -98,6 +98,5 @@
     "@nuxt/eslint": "0.7.1",
     "eslint": "^9.26.0",
     "vue-tsc": "^2.2.10"
-  },
-  "packageManager": "bun@1.1.38"
+  }
 }

@@ -1,6 +1,6 @@
-import { Details as DetailsTiptap, type DetailsOptions } from '@tiptap-pro/extension-details'
-import { DetailsSummary, type DetailsSummaryOptions } from '@tiptap-pro/extension-details-summary'
-import { DetailsContent, type DetailsContentOptions } from '@tiptap-pro/extension-details-content'
+import { Details as DetailsTiptap, type DetailsOptions } from '@tiptap/extension-details'
+import { DetailsSummary, type DetailsSummaryOptions } from '@tiptap/extension-details-summary'
+import { DetailsContent, type DetailsContentOptions } from '@tiptap/extension-details-content'
 import type { GeneralOptions } from '../../types'
 import ActionButton from '../../components/ActionButton.vue'
 
