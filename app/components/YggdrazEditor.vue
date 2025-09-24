@@ -12,7 +12,7 @@ import ContentMenu from '@/features/bubble/ContentMenu.vue'
 import ColumnsMenu from '@/extensions/MultiColumn/menus/ColumnsMenu.vue'
 import AlertMenu from '@/extensions/Alert/menus/AlertMenus.vue'
 import { BaseKit } from '@/extensions'
-import type { LeazyEditorOnChange } from '@/types'
+import type { YggdrazEditorOnChange } from '@/types'
 import { useDebounceFn } from '@vueuse/core'
 
 interface Props {
@@ -37,19 +37,19 @@ interface Props {
 
 interface Emits {
   (event: 'enter' | 'blur' | 'destroy'): void
-  
-  (event: 'change', value: LeazyEditorOnChange): void
-  
+
+  (event: 'change', value: YggdrazEditorOnChange): void
+
   (event: 'selectionUpdate', value: Editor): void
-  
+
   (event: 'update:modelValue', value: Props['modelValue']): void
-  
+
   (event: 'comment:added', value: object): void
-  
+
   (event: 'comment:deleted', value: number): void
-  
+
   (event: 'comment:updated', value: object): void
-  
+
   (event: 'comment:replied', value: object): void
 }
 
@@ -113,7 +113,7 @@ const sortExtensions = computed(() => {
       // history: false
     })
   ]
-  
+
   const diff = differenceBy(baseExtensions, state.extensions, 'name')
   const exts = state.extensions.map(k => {
     const find = baseExtensions.find(ext => ext.name === k.name)
@@ -124,12 +124,12 @@ const sortExtensions = computed(() => {
 
 const debouncedOnUpdate = useDebounceFn(({ editor }) => {
   const output = getOutput(editor, props.output as any)
-  
+
   if (isInitialized.value && output !== initialContent.value) {
     emit('update:modelValue', output)
     emit('change', { editor, output })
   }
-  
+
   if (!isInitialized.value) {
     isInitialized.value = true
     initialContent.value = output
@@ -188,7 +188,7 @@ function getOutput(editor, output) {
     if (output === 'text') return editor.isEmpty ? '' : editor.getText()
     return ''
   }
-  
+
   if (output === 'html') return editor.getHTML()
   if (output === 'json') return editor.getJSON()
   if (output === 'text') return editor.getText()
@@ -216,18 +216,12 @@ defineExpose({ editor })
     <AIMenu :editor="editor" />
     <TableBubbleMenu :editor="editor" />
     <BubbleMenu v-if="!hideBubble" :disabled="disableBubble" :editor="editor" />
-    <div
-      :class="[isFullscreen && 'fixed bg-background inset-0 z-[200] w-full h-full m-0 rounded-none']"
-      class="flex flex-col w-full flex-1"
-    >
-      <Toolbar
-        v-if="!hideToolbar && !disabled" :editor="editor" :style="contentDynamicStyles"
-        class="z-10 sticky top-4 left-0 px-4"
-      />
-      <EditorContent
-        :class="contentClass" :editor="editor" :style="contentDynamicStyles" class="flex-1 w-full"
-        suppressContentEditableWarning
-      />
+    <div :class="[isFullscreen && 'fixed bg-background inset-0 z-[200] w-full h-full m-0 rounded-none']"
+      class="flex flex-col w-full flex-1">
+      <Toolbar v-if="!hideToolbar && !disabled" :editor="editor" :style="contentDynamicStyles"
+        class="z-10 sticky top-4 left-0 px-4" />
+      <EditorContent :class="contentClass" :editor="editor" :style="contentDynamicStyles" class="flex-1 w-full"
+        suppressContentEditableWarning />
     </div>
   </div>
 </template>

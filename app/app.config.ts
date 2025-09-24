@@ -1,6 +1,6 @@
 export default defineAppConfig({
   leazyEditor: {
-    name: 'Hello from Leazy Editor layer'
+    name: 'Hello from Yggdraz Editor layer'
   },
   ui: {
     colors: {

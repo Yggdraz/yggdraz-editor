@@ -5,7 +5,7 @@ export type { Editor, JSONContent } from '@tiptap/core'
 /**
  * Represents the onChange event for EchoEditor.
  */
-export type LeazyEditorOnChange = {
+export type YggdrazEditorOnChange = {
   /** Editor object */
   editor: CoreEditor
   /** Output content, can be a string or JSON content */

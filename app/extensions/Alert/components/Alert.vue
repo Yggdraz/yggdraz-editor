@@ -31,27 +31,17 @@ const types = ref([
   },
 ])
 
-const currentAlert = computed(() => types.value.find(type => type.name === props.node.attrs.type))
+const currentAlert = computed(() => types.value.find(type => type.name === props.node.attrs.type) || types.value[0])
 </script>
 
 <template>
-  <NodeViewWrapper
-    class="alert"
-    data-type="alert"
-  >
-    <UAlert
-      :color="currentAlert.color"
-      :icon="currentAlert.icon"
-      variant="subtle"
-    >
+  <NodeViewWrapper class="alert" data-type="alert">
+    <UAlert :color="currentAlert?.color" :icon="currentAlert?.icon" variant="subtle">
       <template #icon>
-        <UIcon :name="currentAlert.icon" dynamic />
+        <UIcon :name="currentAlert?.icon" dynamic />
       </template>
       <template #description>
-        <NodeViewContent
-          as="p"
-          class="text-sm font-medium"
-        />
+        <NodeViewContent as="p" class="text-sm font-medium" />
       </template>
     </UAlert>
   </NodeViewWrapper>
