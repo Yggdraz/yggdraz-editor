@@ -19,10 +19,9 @@ const link = computed(() => {
   const { href: link } = props.editor.getAttributes('link')
   return link
 })
-const shouldShow: any = computed(() => {
-  const isActive = props.editor.isActive('link')
-  return isActive
-})
+const shouldShow = ({ editor }: { editor: Editor }) => {
+  return editor.isActive('link')
+}
 
 function onSetLink(url: string, text?: string, openInNewTab?: boolean) {
   props.editor
@@ -54,7 +53,7 @@ function unSetLink() {
 </script>
 
 <template>
-  <BubbleMenu :should-show="() => editor.isActive('link')" :editor="editor" :tippy-options="{
+  <BubbleMenu :should-show="shouldShow" :editor="editor" :tippy-options="{
     popperOptions: {
       modifiers: [{ name: 'flip', enabled: false }],
     },
