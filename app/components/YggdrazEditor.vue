@@ -213,7 +213,7 @@ defineExpose({ editor })
     <LinkBubbleMenu :editor="editor" />
     <ColumnsMenu :editor="editor" />
     <AlertMenu :editor="editor" />
-    <AIMenu :editor="editor" />
+    <!-- <AIMenu :editor="editor" /> -->
     <TableBubbleMenu :editor="editor" />
     <BubbleMenu v-if="!hideBubble" :disabled="disableBubble" :editor="editor" />
     <div :class="[isFullscreen && 'fixed bg-background inset-0 z-[200] w-full h-full m-0 rounded-none']"

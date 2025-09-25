@@ -70,9 +70,10 @@ const items = computed(() => {
 })
 </script>
 <template>
-  <div>
-    <BubbleMenu v-show="items.length > 0 && !store?.state.AIMenu" :editor="editor" :tippy-options="tippyOptions"
-      class="flex items-center flex-nowrap whitespace-nowrap gap-0.5 p-1 w-max overflow-hidden focus:outline-none relative bg-red-500 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg">
+
+  <BubbleMenu v-show="items.length > 0 && !store?.state.AIMenu" :editor="editor" :tippy-options="tippyOptions">
+    <div
+      class="flex items-center flex-nowrap whitespace-nowrap gap-0.5 p-1 w-max overflow-hidden focus:outline-none relative bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg">
       <template v-for="(item, key) in items" :key="key">
         <!-- Divider -->
         <USeparator v-if="item.type === 'divider'" :ui="{ border: { base: 'dark:border-neutral-500' } }"
@@ -85,6 +86,7 @@ const items = computed(() => {
           </template>
         </component>
       </template>
-    </BubbleMenu>
-  </div>
+    </div>
+  </BubbleMenu>
+
 </template>

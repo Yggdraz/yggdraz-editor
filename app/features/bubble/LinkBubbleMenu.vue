@@ -54,20 +54,18 @@ function unSetLink() {
 </script>
 
 <template>
-  <div>
-    <BubbleMenu v-show="shouldShow" :editor="editor" :tippy-options="{
-      popperOptions: {
-        modifiers: [{ name: 'flip', enabled: false }],
-      },
-      placement: 'bottom-start',
-      offset: [-2, 16],
-      zIndex: 9999,
-      onHidden: () => {
-        showEdit = false
-      },
-    }">
-      <LinkEditBlock v-if="showEdit" :editor="editor" @onSetLink="onSetLink" />
-      <LinkViewBlock v-else :editor="editor" :link="link" @clear="unSetLink" @edit="showEdit = true" />
-    </BubbleMenu>
-  </div>
+  <BubbleMenu v-show="shouldShow" :editor="editor" :tippy-options="{
+    popperOptions: {
+      modifiers: [{ name: 'flip', enabled: false }],
+    },
+    placement: 'bottom-start',
+    offset: [-2, 16],
+    zIndex: 9999,
+    onHidden: () => {
+      showEdit = false
+    },
+  }">
+    <LinkEditBlock v-if="showEdit" :editor="editor" @onSetLink="onSetLink" />
+    <LinkViewBlock v-else :editor="editor" :link="link" @clear="unSetLink" @edit="showEdit = true" />
+  </BubbleMenu>
 </template>
