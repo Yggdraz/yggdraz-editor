@@ -6,6 +6,10 @@ import { CellSelection } from '@tiptap/pm/tables'
 import type { BaseKitOptions } from '../../extensions'
 import type { BubbleTypeMenu } from './types'
 
+defineOptions({
+  inheritAttrs: false
+})
+
 interface Props {
   editor: Editor
   disabled?: boolean
@@ -66,19 +70,21 @@ const items = computed(() => {
 })
 </script>
 <template>
-  <BubbleMenu v-show="items.length > 0 && !store?.state.AIMenu" :editor="editor" :tippy-options="tippyOptions"
-    class="flex items-center flex-nowrap whitespace-nowrap gap-0.5 p-1 w-max overflow-hidden focus:outline-none relative bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg">
-    <template v-for="(item, key) in items" :key="key">
-      <!-- Divider -->
-      <USeparator v-if="item.type === 'divider'" :ui="{ border: { base: 'dark:border-neutral-500' } }"
-        class="mx-1.5 h-[20px]" orientation="vertical" />
-      <!-- Buttons -->
-      <component :is="item.component" v-else :disabled="disabled || item.componentProps?.disabled" :editor="editor"
-        v-bind="item.componentProps">
-        <template v-for="(element, slotName, i) in item.componentSlots" :key="i" #[`${slotName}`]="values">
-          <component :is="element" v-bind="values?.props" />
-        </template>
-      </component>
-    </template>
-  </BubbleMenu>
+  <div>
+    <BubbleMenu v-show="items.length > 0 && !store?.state.AIMenu" :editor="editor" :tippy-options="tippyOptions"
+      class="flex items-center flex-nowrap whitespace-nowrap gap-0.5 p-1 w-max overflow-hidden focus:outline-none relative bg-red-500 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg">
+      <template v-for="(item, key) in items" :key="key">
+        <!-- Divider -->
+        <USeparator v-if="item.type === 'divider'" :ui="{ border: { base: 'dark:border-neutral-500' } }"
+          class="mx-1.5 h-[20px]" orientation="vertical" />
+        <!-- Buttons -->
+        <component :is="item.component" v-else :disabled="disabled || item.componentProps?.disabled" :editor="editor"
+          v-bind="item.componentProps">
+          <template v-for="(element, slotName, i) in item.componentSlots" :key="i" #[`${slotName}`]="values">
+            <component :is="element" v-bind="values?.props" />
+          </template>
+        </component>
+      </template>
+    </BubbleMenu>
+  </div>
 </template>

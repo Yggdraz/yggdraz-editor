@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  leazyEditor: {
+  YggdrazEditor: {
     name: 'Hello from Yggdraz Editor layer'
   },
   ui: {
@@ -17,7 +17,7 @@ export default defineAppConfig({
 
 declare module '@nuxt/schema' {
   interface AppConfigInput {
-    leazyEditor?: {
+    YggdrazEditor?: {
       name?: string
     }
   }

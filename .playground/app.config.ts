@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  leazyEditor: {
+  YggdrazEditor: {
     name: 'My amazing Nuxt layer (overwritten)'
   }
 })

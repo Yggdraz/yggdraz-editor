@@ -208,7 +208,7 @@ defineExpose({ editor })
 </script>
 
 <template>
-  <div v-if="editor" :class="[editorClass, dense ? 'dense' : '']" class="leazy-editor flex flex-col z-0">
+  <div v-if="editor" :class="[editorClass, dense ? 'dense' : '']" class="yggdraz-editor flex flex-col z-0">
     <ContentMenu :editor="editor" />
     <LinkBubbleMenu :editor="editor" />
     <ColumnsMenu :editor="editor" />

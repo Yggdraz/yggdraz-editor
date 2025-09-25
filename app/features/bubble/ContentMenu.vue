@@ -54,7 +54,7 @@ onMounted(() => {
       },
       onNodeChange: handleNodeChange,
     })
-    
+
     props.editor.registerPlugin(pluginRef.value)
   }
 })
@@ -100,7 +100,7 @@ function handleNodeChange(e) {
     currentNode.value = e.node
   }
   currentNodePos.value = e.pos
-  
+
   canMoveUp.value = canMoveNodeUp()
   canMoveDown.value = canMoveNodeDown()
 }
@@ -139,10 +139,10 @@ function handleAdd() {
           } else {
             tr.insert(insertPos, state.schema.nodes.paragraph.create(null, [state.schema.text('/')]))
           }
-          
+
           return dispatch(tr)
         }
-        
+
         return true
       })
       .focus(focusPos)
@@ -166,7 +166,7 @@ watch(
   () => props.editor.isDestroyed,
   (isDestroyed) => {
     if (isDestroyed && pluginRef.value) {
-      props.editor.unregisterPlugin(props.pluginKey)
+      props.editor.unregisterPlugin(new PluginKey(props.pluginKey))
       pluginRef.value = null
     }
   },
@@ -174,99 +174,40 @@ watch(
 </script>
 
 <template>
-  <div
-    v-if="!props.editor.isDestroyed && props.editor.isEditable"
-    ref="dragElement"
-    :class="className"
-    style="transition-property: top, left; transition-timing-function: ease-in-out; transition-duration: 0.2s"
-  >
-    <div
-      class="flex items-baseline"
-      style="transition-property: top, left; transition-timing-function: ease-in-out; transition-duration: 0.2s"
-    >
-      <UButton
-        color="neutral"
-        icon="i-lucide-plus"
-        size="xs"
-        variant="ghost"
-        @click="handleAdd"
-      />
-      
-      <UPopover
-        v-model:open="menuOpen"
-        :popper="{ placement: 'top-start' }"
-      >
-        <UButton
-          color="neutral"
-          icon="i-lucide-grip-vertical"
-          size="xs"
-          variant="ghost"
-        />
-        
+  <div v-if="!props.editor.isDestroyed && props.editor.isEditable" ref="dragElement" :class="className"
+    style="transition-property: top, left; transition-timing-function: ease-in-out; transition-duration: 0.2s">
+    <div class="flex items-baseline"
+      style="transition-property: top, left; transition-timing-function: ease-in-out; transition-duration: 0.2s">
+      <UButton color="neutral" icon="i-lucide-plus" size="xs" variant="ghost" @click="handleAdd" />
+
+      <UPopover v-model:open="menuOpen" :popper="{ placement: 'top-start' }">
+        <UButton color="neutral" icon="i-lucide-grip-vertical" size="xs" variant="ghost" />
+
         <template #content>
           <div class="w-max flex flex-col">
             <div class="flex flex-col p-1">
-              <UButton
-                :disabled="!canMoveUp"
-                color="neutral"
-                icon="i-lucide-chevron-up"
-                label="Remonter"
-                size="xs"
-                variant="ghost"
-                @click="moveNode('UP')"
-              />
-              <UButton
-                :disabled="!canMoveDown"
-                color="neutral"
-                icon="i-lucide-chevron-down"
-                label="Descendre"
-                size="xs"
-                variant="ghost"
-                @click="moveNode('DOWN')"
-              />
+              <UButton :disabled="!canMoveUp" color="neutral" icon="i-lucide-chevron-up" label="Remonter" size="xs"
+                variant="ghost" @click="moveNode('UP')" />
+              <UButton :disabled="!canMoveDown" color="neutral" icon="i-lucide-chevron-down" label="Descendre" size="xs"
+                variant="ghost" @click="moveNode('DOWN')" />
             </div>
-            
+
             <USeparator orientation="horizontal" />
-            
+
             <div class="flex flex-col p-1">
-              <UButton
-                :label="$t('editor.clear.tooltip')"
-                color="neutral"
-                icon="i-lucide-paint-roller"
-                size="xs"
-                variant="ghost"
-                @click="resetTextFormatting"
-              />
-              <UButton
-                :label="$t('editor.copy')"
-                color="neutral"
-                icon="i-lucide-clipboard"
-                size="xs"
-                variant="ghost"
-                @click="copyNodeToClipboard"
-              />
-              <UButton
-                v-if="false"
-                :label="$t('editor.duplicate')"
-                color="neutral"
-                icon="i-lucide-copy"
-                size="xs"
-                variant="ghost"
-                @click="duplicateNode"
-              />
+              <UButton :label="$t('editor.clear.tooltip')" color="neutral" icon="i-lucide-paint-roller" size="xs"
+                variant="ghost" @click="resetTextFormatting" />
+              <UButton :label="$t('editor.copy')" color="neutral" icon="i-lucide-clipboard" size="xs" variant="ghost"
+                @click="copyNodeToClipboard" />
+              <UButton v-if="false" :label="$t('editor.duplicate')" color="neutral" icon="i-lucide-copy" size="xs"
+                variant="ghost" @click="duplicateNode" />
             </div>
-            
+
             <USeparator orientation="horizontal" />
-            
+
             <div class="flex flex-col p-1">
-              <UButton
-                :label="$t('editor.remove')"
-                color="error"
-                icon="i-lucide-trash-2"
-                size="xs"
-                variant="soft"
-                @click="deleteNode"
-              />
+              <UButton :label="$t('editor.remove')" color="error" icon="i-lucide-trash-2" size="xs" variant="soft"
+                @click="deleteNode" />
             </div>
           </div>
         </template>
