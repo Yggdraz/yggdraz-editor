@@ -18,7 +18,7 @@ type BubbleVideoType = 'video' | 'remove'
 type BubbleAllType = BubbleImageType | BubbleVideoType | ExtensionNameKeys | 'divider' | (string & {})
 
 /** Represents the key types for node types */
-export type NodeTypeKey = 'image' | 'text' | 'video'
+export type NodeTypeKey = 'image' | 'text' | 'video' | 'link' | 'table'
 
 /** Represents the menu of bubble types for each node type */
 export type BubbleTypeMenu = Partial<Record<NodeTypeKey, BubbleMenuItem[]>>

@@ -81,7 +81,7 @@ const items = computed(() => {
         <!-- Buttons -->
         <component :is="item.component" v-else :disabled="disabled || item.componentProps?.disabled" :editor="editor"
           v-bind="item.componentProps">
-          <template v-for="(element, slotName, i) in item.componentSlots" :key="i" #[`${slotName}`]="values">
+          <template v-for="(element, slotName) in item.componentSlots" :key="slotName" #[`${slotName}`]="values">
             <component :is="element" v-bind="values?.props" />
           </template>
         </component>
