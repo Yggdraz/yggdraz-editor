@@ -41,7 +41,7 @@ const onColumnTwo = () => {
 </script>
 
 <template>
-  <BubbleMenu :editor="editor" :shouldShow="shouldShow" :tippy-options="{
+  <BubbleMenu :editor="editor" :shouldShow="shouldShow" :options="{
     offset: [0, 8],
     popperOptions: {
       modifiers: [{ name: 'flip', enabled: false }],

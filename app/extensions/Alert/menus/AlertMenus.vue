@@ -29,7 +29,7 @@ const getReferenceClientRect = () => {
 </script>
 
 <template>
-  <BubbleMenu :editor="editor" :should-show="shouldShow" :tippy-options="{
+  <BubbleMenu :editor="editor" :should-show="shouldShow" :options="{
     offset: [0, 8],
     popperOptions: {
       modifiers: [{ name: 'flip', enabled: false }],

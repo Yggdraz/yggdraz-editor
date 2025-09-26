@@ -70,7 +70,7 @@ function onDeleteRow() {
 </script>
 
 <template>
-  <BubbleMenu :editor="editor" :should-show="shouldShow" :tippy-options="{
+  <BubbleMenu :editor="editor" :should-show="shouldShow" :options="{
     appendTo: 'parent',
     placement: 'left',
     offset: [0, 15],

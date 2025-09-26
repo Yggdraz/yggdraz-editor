@@ -53,7 +53,7 @@ function unSetLink() {
 </script>
 
 <template>
-  <BubbleMenu :should-show="shouldShow" :editor="editor" :tippy-options="{
+  <BubbleMenu :should-show="shouldShow" :editor="editor" :options="{
     popperOptions: {
       modifiers: [{ name: 'flip', enabled: false }],
     },

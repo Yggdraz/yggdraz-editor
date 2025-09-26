@@ -71,7 +71,7 @@ function onDeleteColumn() {
 </script>
 
 <template>
-  <BubbleMenu :editor="editor" :should-show="shouldShow" :tippy-options="{
+  <BubbleMenu :editor="editor" :should-show="shouldShow" :options="{
     appendTo: 'parent',
     offset: [0, 15],
     popperOptions: {
