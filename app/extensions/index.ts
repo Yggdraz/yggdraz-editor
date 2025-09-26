@@ -932,7 +932,15 @@ export const BaseKit = Extension.create<BaseKitOptions>({
     }
 
     if (this.options.moreMark !== false) {
-      extensions.push(MoreMark.configure(this.options.moreMark))
+      // Disable subscript/superscript in MoreMark if SubAndSuperScript is enabled to avoid duplicates
+      const moreMarkConfig = {
+        ...this.options.moreMark,
+        ...(this.options.subAndSuperScript !== false && {
+          subscript: false,
+          superscript: false,
+        }),
+      }
+      extensions.push(MoreMark.configure(moreMarkConfig))
     }
 
     if (this.options.orderedList !== false) {

@@ -56,7 +56,7 @@ const getReferenceClientRect = () => {
           :tooltip="$t('editor.alert.success')" icon="i-lucide-circle-check" :title="$t('editor.alert.success')"
           @click="editor.chain().focus().setAlertType('success').run()" />
         <UTooltip :text="$t('editor.remove')">
-          <UButton :active="() => editor.isActive('alert')" :tooltip="$t('editor.remove')" color="error"
+          <UButton :active="editor.isActive('alert')" :tooltip="$t('editor.remove')" color="error"
             icon="i-lucide-trash-2" size="xs" :title="$t('editor.remove')" variant="ghost"
             @click="editor.chain().focus().deleteNode('alert').run()" />
         </UTooltip>

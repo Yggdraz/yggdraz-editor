@@ -83,14 +83,13 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
   addExtensions() {
     const extensions: Extensions = []
 
-    // Check if SubAndSuperScript extension is already present to avoid duplicates
-    const hasSubAndSuperScript = this.editor?.extensionManager.extensions.some(ext => ext.name === 'subAndSuperScript')
-
-    if (this.options.subscript !== false && !hasSubAndSuperScript) {
+    // Only add subscript/superscript if they are explicitly enabled
+    // The SubAndSuperScript extension should handle these marks when enabled
+    if (this.options.subscript !== false) {
       extensions.push(TiptapSubscript.configure(this.options.subscript))
     }
 
-    if (this.options.superscript !== false && !hasSubAndSuperScript) {
+    if (this.options.superscript !== false) {
       extensions.push(TiptapSuperscript.configure(this.options.superscript))
     }
 

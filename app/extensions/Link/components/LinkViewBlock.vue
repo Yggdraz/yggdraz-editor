@@ -5,7 +5,7 @@ import ActionButton from '../../../components/ActionButton.vue'
 
 interface Props {
   editor: Editor
-  link: string
+  link?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -24,9 +24,7 @@ function onEdit() {
 </script>
 
 <template>
-  <div
-    class="flex items-center gap-2 p-2 rounded-lg bg-white dark:bg-neutral-800 shadow-sm border border-default"
-  >
+  <div class="flex items-center gap-2 p-2 rounded-lg bg-white dark:bg-neutral-800 shadow-sm border border-default">
     <a :href="link" class="text-sm underline break-all" rel="noopener noreferrer" target="_blank">
       {{
         truncate(link, {
@@ -37,18 +35,10 @@ function onEdit() {
     </a>
     <USeparator v-if="link" class="h-4" orientation="vertical" />
     <div class="flex flex-nowrap">
-      <ActionButton
-        :action="onEdit"
-        :tooltip="t('editor.link.edit.tooltip')"
-        :tooltip-options="{ sideOffset: 15 }"
-        icon="i-lucide-pencil"
-      />
-      <ActionButton
-        :action="onClear"
-        :tooltip="t('editor.link.unlink.tooltip')"
-        :tooltip-options="{ sideOffset: 15 }"
-        icon="i-lucide-unlink"
-      />
+      <ActionButton :action="onEdit" :tooltip="t('editor.link.edit.tooltip')" :tooltip-options="{ sideOffset: 15 }"
+        icon="i-lucide-pencil" />
+      <ActionButton :action="onClear" :tooltip="t('editor.link.unlink.tooltip')" :tooltip-options="{ sideOffset: 15 }"
+        icon="i-lucide-unlink" />
     </div>
   </div>
 </template>
